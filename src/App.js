@@ -40,8 +40,15 @@ const App = () => {
 			blogsService.setToken(user.token)
 			setUsername('')
 			setPassword('')
+			setNoti({ message: `welcome back ${user.name}`, type: 'noti' })
+			setTimeout(() => {
+				setNoti({ message: null, type: 'error' })
+			}, 3000)
 		} catch (exception) {
-			console.log('sai roi nha con')
+			setNoti({ message: 'wrong username or password', type: 'error' })
+			setTimeout(() => {
+				setNoti({ message: null, type: 'error' })
+			}, 3000)
 		}
 	}
 
