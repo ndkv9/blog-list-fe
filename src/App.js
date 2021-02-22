@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import BlogList from './components/BlogList'
-import blogService from './services/blogs'
+import blogsService from './services/blogs'
 import LoginForm from './components/LoginForm'
 import loginService from './services/login'
 
@@ -11,18 +11,22 @@ const App = () => {
 	const [user, setUser] = useState(null)
 
 	useEffect(() => {
-		blogService.getAll().then(blogs => setBlogs(blogs))
+		blogsService.getAll().then(blogs => setBlogs(blogs))
 	}, [])
 
 	const handleLogin = async event => {
 		event.preventDefault()
-		const credentials = {
-			username,
-			password,
-		}
+		try {
+			const credentials = {
+				username,
+				password,
+			}
 
-		const user = await loginService.login(credentials)
-		setUser(user)
+			const user = await loginService.login(credentials)
+			blogsService.setUser(user)
+		} catch (exception) {
+			console.log('sai roi nha con')
+		}
 	}
 
 	return (
@@ -36,7 +40,7 @@ const App = () => {
 					handleLogin={handleLogin}
 				/>
 			) : (
-				<BlogList blogs={blogs} />
+				<BlogList blogs={blogs} user={user} />
 			)}
 		</div>
 	)
