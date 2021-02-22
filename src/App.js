@@ -14,6 +14,15 @@ const App = () => {
 		blogsService.getAll().then(blogs => setBlogs(blogs))
 	}, [])
 
+	useEffect(() => {
+		const userJSON = window.localStorage.getItem('loggedBlogListUser')
+		if (userJSON) {
+			const user = JSON.parse(userJSON)
+			setUser(user)
+			blogsService.setToken(user.token)
+		}
+	}, [])
+
 	const handleLogin = async event => {
 		event.preventDefault()
 		try {
@@ -23,7 +32,11 @@ const App = () => {
 			}
 
 			const user = await loginService.login(credentials)
-			blogsService.setUser(user)
+			window.localStorage.setItem('loggedBlogListUser', JSON.stringify(user))
+			blogsService.setToken(user.token)
+			setUser(user)
+			setUsername('')
+			setPassword('')
 		} catch (exception) {
 			console.log('sai roi nha con')
 		}

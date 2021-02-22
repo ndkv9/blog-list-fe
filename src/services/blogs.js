@@ -3,7 +3,7 @@ const baseUrl = '/api/blogs'
 
 let token = null
 
-const getToken = newToken => {
+const setToken = newToken => {
 	return `bearer ${newToken}`
 }
 
@@ -21,4 +21,4 @@ const create = async newObject => {
 	return response.data
 }
 
-export default { getAll, create, getToken }
+export default { getAll, create, setToken }
