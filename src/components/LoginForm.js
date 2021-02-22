@@ -24,7 +24,7 @@ const LoginForm = ({
 					password:
 					<input
 						name='Password'
-						type='text'
+						type='password'
 						value={password}
 						onChange={e => {
 							setPassword(e.target.value)
