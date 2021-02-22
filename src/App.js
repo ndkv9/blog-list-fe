@@ -61,6 +61,13 @@ const App = () => {
 		try {
 			const newBlog = await blogsService.create(blog)
 			setBlogs(blogs.concat(newBlog))
+			setNoti({
+				message: `added ${newBlog.title} by ${newBlog.author}`,
+				type: 'noti',
+			})
+			setTimeout(() => {
+				setNoti({ message: null, type: 'error' })
+			}, 3000)
 		} catch (exception) {
 			console.log(exception)
 		}
