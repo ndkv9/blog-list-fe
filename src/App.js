@@ -42,6 +42,11 @@ const App = () => {
 		}
 	}
 
+	const handleLogout = () => {
+		window.localStorage.clear()
+		setUser(null)
+	}
+
 	return (
 		<div>
 			{user === null ? (
@@ -53,7 +58,7 @@ const App = () => {
 					handleLogin={handleLogin}
 				/>
 			) : (
-				<BlogList blogs={blogs} user={user} />
+				<BlogList blogs={blogs} user={user} handleLogout={handleLogout} />
 			)}
 		</div>
 	)
