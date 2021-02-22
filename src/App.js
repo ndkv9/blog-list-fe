@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import BlogList from './components/BlogList'
 import BlogForm from './components/BlogForm'
 import LoginForm from './components/LoginForm'
+import Noti from './components/Noti'
 import blogsService from './services/blogs'
 import loginService from './services/login'
 
@@ -10,6 +11,7 @@ const App = () => {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
 	const [user, setUser] = useState(null)
+	const [noti, setNoti] = useState({ message: null, type: 'error' })
 
 	useEffect(() => {
 		blogsService.getAll().then(blogs => setBlogs(blogs))
@@ -59,6 +61,7 @@ const App = () => {
 
 	return (
 		<div>
+			<Noti noti={noti} />
 			{user === null ? (
 				<LoginForm
 					username={username}
