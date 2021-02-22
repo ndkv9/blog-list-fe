@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import BlogList from './components/BlogList'
-import blogsService from './services/blogs'
+import BlogForm from './components/BlogForm'
 import LoginForm from './components/LoginForm'
+import blogsService from './services/blogs'
 import loginService from './services/login'
 
 const App = () => {
@@ -33,8 +34,8 @@ const App = () => {
 
 			const user = await loginService.login(credentials)
 			window.localStorage.setItem('loggedBlogListUser', JSON.stringify(user))
-			blogsService.setToken(user.token)
 			setUser(user)
+			blogsService.setToken(user.token)
 			setUsername('')
 			setPassword('')
 		} catch (exception) {
@@ -45,6 +46,15 @@ const App = () => {
 	const handleLogout = () => {
 		window.localStorage.clear()
 		setUser(null)
+	}
+
+	const addNew = async blog => {
+		try {
+			const newBlog = await blogsService.create(blog)
+			setBlogs(blogs.concat(newBlog))
+		} catch (exception) {
+			console.log(exception)
+		}
 	}
 
 	return (
@@ -58,7 +68,10 @@ const App = () => {
 					handleLogin={handleLogin}
 				/>
 			) : (
-				<BlogList blogs={blogs} user={user} handleLogout={handleLogout} />
+				<div>
+					<BlogForm createBlog={addNew} />
+					<BlogList blogs={blogs} user={user} handleLogout={handleLogout} />
+				</div>
 			)}
 		</div>
 	)
