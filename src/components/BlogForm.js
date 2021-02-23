@@ -5,15 +5,14 @@ const BlogForm = props => {
 	const [author, setAuthor] = useState('')
 	const [url, setUrl] = useState('')
 
-	const addNew = event => {
+	const addNew = async event => {
 		event.preventDefault()
 		const blog = {
 			title,
 			author,
 			url,
-			user: props.user.id,
 		}
-		props.createBlog(blog)
+		await props.createBlog(blog)
 		setTitle('')
 		setAuthor('')
 		setUrl('')

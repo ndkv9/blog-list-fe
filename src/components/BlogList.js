@@ -5,13 +5,10 @@ const BlogList = ({ blogs, user, handleLogout, addLikes }) => {
 		<div>
 			<strong>{user.name} logged in</strong>
 			<button onClick={handleLogout}>logout</button>
-			<ul>
-				{blogs.map(blog => (
-					<li key={blog.id}>
-						<Blog blog={blog} addLikes={addLikes} />
-					</li>
-				))}
-			</ul>
+
+			{blogs.map(blog => (
+				<Blog key={blog.id} blog={blog} addLikes={addLikes} />
+			))}
 		</div>
 	)
 }
