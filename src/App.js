@@ -74,10 +74,18 @@ const App = () => {
 		}
 	}
 
-	const handleLikes = async (newObj, id) => {
-		const returnedBlog = await blogsService.update(newObj, id)
+	const handleLikes = async id => {
+		const blogToLike = blogs.find(b => b.id === id)
+		const likedBlog = {
+			...blogToLike,
+			likes: blogToLike.likes + 1,
+			user: blogToLike.user.id,
+		}
+		await blogsService.update(likedBlog)
 		setBlogs(
-			blogs.map(blog => (blog.id === returnedBlog.id ? returnedBlog : blog))
+			blogs.map(b =>
+				b.id === id ? { ...blogToLike, likes: blogToLike.likes + 1 } : b
+			)
 		)
 	}
 
@@ -96,7 +104,7 @@ const App = () => {
 				<div>
 					<h2>blogs</h2>
 					<Togglable buttonLabel='new note'>
-						<BlogForm createBlog={addNew} />
+						<BlogForm createBlog={addNew} user={user} />
 					</Togglable>
 					<BlogList
 						blogs={blogs}

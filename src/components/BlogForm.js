@@ -11,6 +11,7 @@ const BlogForm = props => {
 			title,
 			author,
 			url,
+			user: props.user.id,
 		}
 		props.createBlog(blog)
 		setTitle('')

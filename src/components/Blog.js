@@ -17,18 +17,6 @@ const Blog = ({ blog, addLikes }) => {
 		setIsFull(!isFull)
 	}
 
-	const handleLikes = async () => {
-		const newBlog = {
-			user: blog.user.id,
-			likes: blog.likes + 1,
-			author: blog.author,
-			title: blog.title,
-			url: blog.url,
-		}
-
-		await addLikes(newBlog, blog.id)
-	}
-
 	return (
 		<div style={blogStyle}>
 			<div>
@@ -38,7 +26,8 @@ const Blog = ({ blog, addLikes }) => {
 			<div style={display}>
 				<div>{blog.url}</div>
 				<div>
-					likes:{blog.likes} <button onClick={handleLikes}>likes</button>
+					likes:{blog.likes}{' '}
+					<button onClick={() => addLikes(blog.id)}>likes</button>
 				</div>
 				<div>{blog.user.name}</div>
 			</div>
