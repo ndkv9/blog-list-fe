@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const Blog = ({ blog }) => {
+const Blog = ({ blog, addLikes }) => {
 	const [isFull, setIsFull] = useState(false)
 
 	const blogStyle = {
@@ -17,6 +17,18 @@ const Blog = ({ blog }) => {
 		setIsFull(!isFull)
 	}
 
+	const handleLikes = async () => {
+		const newBlog = {
+			user: blog.user.id,
+			likes: blog.likes + 1,
+			author: blog.author,
+			title: blog.title,
+			url: blog.url,
+		}
+
+		await addLikes(newBlog, blog.id)
+	}
+
 	return (
 		<div style={blogStyle}>
 			<div>
@@ -26,7 +38,7 @@ const Blog = ({ blog }) => {
 			<div style={display}>
 				<div>{blog.url}</div>
 				<div>
-					likes:{blog.likes} <button>likes</button>
+					likes:{blog.likes} <button onClick={handleLikes}>likes</button>
 				</div>
 				<div>{blog.user.name}</div>
 			</div>
