@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import BlogList from './components/BlogList'
 import BlogForm from './components/BlogForm'
 import LoginForm from './components/LoginForm'
+import Togglable from './components/Togglable'
 import Noti from './components/Noti'
 import blogsService from './services/blogs'
 import loginService from './services/login'
@@ -86,7 +87,9 @@ const App = () => {
 				/>
 			) : (
 				<div>
-					<BlogForm createBlog={addNew} />
+					<Togglable buttonLabel='new note'>
+						<BlogForm createBlog={addNew} />
+					</Togglable>
 					<BlogList blogs={blogs} user={user} handleLogout={handleLogout} />
 				</div>
 			)}

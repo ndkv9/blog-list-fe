@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const Togglable = () => {
+const Togglable = props => {
 	const [visibility, setVisibility] = useState(false)
 
 	const showWhenVisible = { display: visibility ? '' : 'none' }
