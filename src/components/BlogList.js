@@ -14,6 +14,7 @@ const BlogList = ({ blogs, user, handleLogout, addLikes, removeBlog }) => {
 					blog={blog}
 					addLikes={addLikes}
 					removeBlog={removeBlog}
+					user={user}
 				/>
 			))}
 		</div>
