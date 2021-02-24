@@ -89,7 +89,20 @@ const App = () => {
 		)
 	}
 
-	const removeBlog = () => {}
+	const removeBlog = async id => {
+		try {
+			const blogToDelete = blogs.find(b => b.id === id)
+			const result = window.confirm(
+				`remove ${blogToDelete.title} by ${blogToDelete.author}`
+			)
+			if (result) {
+				await blogsService.remove(id)
+				setBlogs(blogs.filter(b => b.id !== id))
+			}
+		} catch (exception) {
+			console.log(exception)
+		}
+	}
 
 	return (
 		<div>
@@ -113,6 +126,7 @@ const App = () => {
 						user={user}
 						handleLogout={handleLogout}
 						addLikes={handleLikes}
+						removeBlog={removeBlog}
 					/>
 				</div>
 			)}

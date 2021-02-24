@@ -1,6 +1,6 @@
 import Blog from '../components/Blog'
 
-const BlogList = ({ blogs, user, handleLogout, addLikes }) => {
+const BlogList = ({ blogs, user, handleLogout, addLikes, removeBlog }) => {
 	const orderedBlogs = blogs.sort((a, b) => b.likes - a.likes)
 
 	return (
@@ -9,7 +9,12 @@ const BlogList = ({ blogs, user, handleLogout, addLikes }) => {
 			<button onClick={handleLogout}>logout</button>
 
 			{orderedBlogs.map(blog => (
-				<Blog key={blog.id} blog={blog} addLikes={addLikes} />
+				<Blog
+					key={blog.id}
+					blog={blog}
+					addLikes={addLikes}
+					removeBlog={removeBlog}
+				/>
 			))}
 		</div>
 	)
