@@ -11,6 +11,11 @@ const Blog = ({ blog, addLikes }) => {
 		marginBottom: 15,
 	}
 
+	const btnStyle = {
+		backgroundColor: 'orange',
+		borderRadius: 5,
+	}
+
 	const display = { display: isFull ? '' : 'none' }
 
 	const toggleDisplay = () => {
@@ -30,6 +35,7 @@ const Blog = ({ blog, addLikes }) => {
 					<button onClick={() => addLikes(blog.id)}>likes</button>
 				</div>
 				<div>{blog.user.name}</div>
+				<button style={btnStyle}>remove</button>
 			</div>
 		</div>
 	)

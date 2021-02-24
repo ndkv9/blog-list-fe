@@ -89,6 +89,8 @@ const App = () => {
 		)
 	}
 
+	const removeBlog = () => {}
+
 	return (
 		<div>
 			<Noti noti={noti} />
