@@ -4,6 +4,7 @@ import Blog from './Blog'
 
 describe('<Blog />', () => {
 	let component
+	let addLikes
 	beforeEach(() => {
 		const blog = {
 			title: 'piccolo likes ajinomoto',
@@ -24,7 +25,9 @@ describe('<Blog />', () => {
 			id: '602ea124777d7939104444c4',
 		}
 
-		component = render(<Blog blog={blog} user={user} />)
+		addLikes = jest.fn()
+
+		component = render(<Blog blog={blog} user={user} addLikes={addLikes} />)
 	})
 
 	test('renders blogs title and author', () => {
@@ -46,5 +49,13 @@ describe('<Blog />', () => {
 		expect(
 			component.container.querySelector('.togglableContents')
 		).not.toHaveStyle('display: none')
+	})
+
+	test('if the like button is clicked twice, it will be called twice', () => {
+		const likeBtn = component.container.querySelector('.like-btn')
+		fireEvent.click(likeBtn)
+		fireEvent.click(likeBtn)
+
+		expect(addLikes.mock.calls).toHaveLength(2)
 	})
 })
