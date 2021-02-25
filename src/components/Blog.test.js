@@ -38,4 +38,13 @@ describe('<Blog />', () => {
 			'display: none'
 		)
 	})
+
+	test('url and number of likes are shown when the button controlling the shown details has been clicked', () => {
+		const viewBtn = component.getByText('view')
+		fireEvent.click(viewBtn)
+
+		expect(
+			component.container.querySelector('.togglableContents')
+		).not.toHaveStyle('display: none')
+	})
 })

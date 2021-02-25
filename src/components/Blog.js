@@ -33,7 +33,9 @@ const Blog = ({ blog, user, addLikes, removeBlog }) => {
 					{blog.title} {blog.author}
 				</span>
 
-				<button onClick={toggleDisplay}>{isFull ? 'hide' : 'view'}</button>
+				<button className='view-btn' onClick={toggleDisplay}>
+					{isFull ? 'hide' : 'view'}
+				</button>
 			</div>
 			<div style={display} className='togglableContents'>
 				<div>{blog.url}</div>
