@@ -29,10 +29,13 @@ const Blog = ({ blog, user, addLikes, removeBlog }) => {
 	return (
 		<div style={blogStyle}>
 			<div>
-				{blog.title} {blog.author}
+				<span className='title-author'>
+					{blog.title} {blog.author}
+				</span>
+
 				<button onClick={toggleDisplay}>{isFull ? 'hide' : 'view'}</button>
 			</div>
-			<div style={display}>
+			<div style={display} className='togglableContents'>
 				<div>{blog.url}</div>
 				<div>
 					likes:{blog.likes}{' '}
