@@ -21,10 +21,11 @@ const BlogForm = props => {
 	return (
 		<div>
 			<h2>create new</h2>
-			<form onSubmit={addNew}>
+			<form className='blog-form' onSubmit={addNew}>
 				<div>
 					title:
 					<input
+						className='title-input'
 						name='Title'
 						type='text'
 						value={title}
@@ -34,6 +35,7 @@ const BlogForm = props => {
 				<div>
 					author:
 					<input
+						className='author-input'
 						name='Author'
 						type='text'
 						value={author}
@@ -43,6 +45,7 @@ const BlogForm = props => {
 				<div>
 					url:
 					<input
+						className='url-input'
 						name='Url'
 						type='text'
 						value={url}
